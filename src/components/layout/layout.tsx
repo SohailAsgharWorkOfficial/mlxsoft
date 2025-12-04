@@ -1,6 +1,8 @@
 
 import Header from '../header'
 import Footer from '../footer'
+import Brands from '../Brands'
+import LetsTalk from '../LetsTalk'  
 
 import type { ReactNode } from 'react'
 
@@ -15,6 +17,8 @@ function Layout({ children }: LayoutProps) {
       <main className="bg-bg-white">
         {children}
       </main>
+      <Brands />
+      <LetsTalk />  
       
       <Footer />
     </>

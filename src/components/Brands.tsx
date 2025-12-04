@@ -56,7 +56,7 @@ const Brands: React.FC = () => {
               <img
                 src={brand.logo}
                 alt={brand.name}
-                className="h-8 md:h-9 lg:h-10 w-auto object-contain"
+                className="h-12 md:h-12 lg:h-12 w-auto object-contain"
                 loading="lazy"
               />
             </div>

@@ -8,11 +8,11 @@ import {
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from "./ui/Carousel"
+} from "../../../components/ui/Carousel"
 
-import NewsImage1 from "../assets/images/news1.jpg"
-import NewsImage2 from "../assets/images/news2.jpg"
-import NewsImage3 from "../assets/images/news3.jpg"
+import NewsImage1 from "../../../assets/images/news1.jpg"
+import NewsImage2 from "../../../assets/images/news2.jpg"
+import NewsImage3 from "../../../assets/images/news3.jpg"
 
 type NewsItem = {
   id: number
