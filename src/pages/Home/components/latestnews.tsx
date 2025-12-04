@@ -1,5 +1,4 @@
 // src/components/latestnews.tsx  (or LatestNewsSection.tsx)
-
 import * as React from "react"
 import type { FC } from "react"
 
