@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'FaroSad';
+  src: url('./assets/fonts/Faro-RegularSad.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FaroSad';
+  src: url('./assets/fonts/Faro-SemiBoldSad.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FaroSad';
+  src: url('./assets/fonts/Faro-BoldSad.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FaroLucky';
+  src: url('./assets/fonts/Faro-RegularLucky.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Utility aliases so Tailwind font-family keys map to these font names */
+:root {
+  --font-faro-sad: 'FaroSad', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --font-faro-lucky: 'FaroLucky', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Optionally set base font-family fallback */
+html, body {
+  font-family: var(--font-faro-sad);
+}
+/* 400 Regular SAD */
+@font-face {
+  font-family: "FaroSad";
+  src: url("./assets/fonts/Faro-RegularSad.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 400 Regular LUCKY */
+@font-face {
+  font-family: "FaroLucky";
+  src: url("./assets/fonts/Faro-RegularLucky.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 600 SemiBold */
+@font-face {
+  font-family: "FaroSad";
+  src: url("./assets/fonts/Faro-SemiBoldSad.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* 700 Bold */
+@font-face {
+  font-family: "FaroSad";
+  src: url("./assets/fonts/Faro-BoldSad.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
