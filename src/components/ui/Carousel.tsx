@@ -3,12 +3,12 @@
 import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
 
-// Utility for merging classes
+
 function cn(...classes: (string | false | null | undefined)[]) {
   return classes.filter(Boolean).join(" ")
 }
 
-// Embla API type
+
 type UseEmblaCarouselReturn = ReturnType<typeof useEmblaCarousel>
 export type CarouselApi = UseEmblaCarouselReturn[1]
 

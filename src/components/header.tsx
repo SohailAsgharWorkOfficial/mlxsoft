@@ -1,95 +1,109 @@
-import React, { useState } from "react";
-import Path119Url from "@/assets/icons/path119.svg";
-import LogoUrl from "@/assets/icons/Vector.svg";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import Logo from "../assets/icons/Vector.svg";
+import ActiveBg from "../assets/icons/path119.svg";
 
 const Header: React.FC = () => {
-  const [activeItem, setActiveItem] = useState<string>("HOME");
+  const location = useLocation();
+  const [active, setActive] = useState("");
+
+  useEffect(() => {
+    const map: Record<string, string> = {
+      "/": "HOME",
+      "/work": "WORK",
+      "/services": "SERVICES",
+      "/company": "COMPANY",
+      "/career": "CAREER",
+    };
+    setActive(map[location.pathname] || "");
+  }, [location.pathname]);
 
   const navItems = [
-    { label: "HOME", href: "#home", font: "font-faroSad" },
-    { label: "WORK", href: "#work", font: "font-faroLucky" },
-    { label: "SERVICES", href: "#services", font: "font-faroLucky" },
-    { label: "COMPANY", href: "#company", font: "font-faroLucky" },
-    { label: "CAREER", href: "#career", font: "font-faroLucky" },
-    { label: "BLOG", href: "#blog", font: "font-faroLucky" },
+    { label: "HOME", to: "/" },
+    { label: "WORK", to: "/work" },
+    { label: "SERVICES", to: "/services" },
+    { label: "COMPANY", to: "/company" },
+    { label: "CAREER", to: "/career" },
   ];
 
   return (
-    <nav className="w-full bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          
-         
-          <div className="shrink-0 hover:cursor-pointer">
-            <img src={LogoUrl} alt="Logo" className="h-8 w-auto" />
-          </div>
+    <header className="w-full bg-white">
+      <div className="max-w-[1320px] mx-auto px-6">
+        <div className="flex h-[80px] items-center justify-between">
 
-        
-          <div className="hidden md:flex space-x-8 items-center">
+          {/* LOGO (bigger) */}
+          <Link to="/" className="flex items-center">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="h-10 w-auto"   // ⬅️ increased
+            />
+          </Link>
+
+          {/* NAV ITEMS (bigger & bolder) */}
+          <nav className="hidden md:flex items-center gap-12">
             {navItems.map((item) => {
-              const isActive = activeItem === item.label;
+              const isActive = active === item.label;
 
               return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setActiveItem(item.label)}
-                  className={`
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className="
                     relative
-                    group
-                    ${item.font}
+                    text-[15px]        /* ⬅️ size up */
                     font-semibold
-                    text-gray-800 
-                    ${isActive ? "text-brand-dark" : ""}
-                    hover:text-brand-light
-                    transition-colors
-                    duration-200
-                    px-2
-                    py-2
-                  `}
+                    tracking-widest    /* ⬅️ spacing like image */
+                    text-gray-900
+                    hover:text-[#007d58]
+                    transition
+                  "
                 >
-                 
+                  {/* Active background */}
                   <img
-                    src={Path119Url}
-                    alt=""
+                    src={ActiveBg}
+                    aria-hidden
                     className={`
-                      absolute
-                      left-1/2
-                      top-1/2
-                      -translate-x-1/2
-                      -translate-y-1/2
-                      w-10
-                      h-20
-                      transition
-                      duration-300
-                      z-0
-                      block
+                      absolute left-1/2 top-1/2
+                      -translate-x-1/2 -translate-y-1/2
+                      h-18 w-12
                       pointer-events-none
-                      ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}
+                      transition-opacity duration-300
+                      ${isActive ? "opacity-100" : "opacity-0"}
                     `}
-                    aria-hidden="true"
                   />
 
-                  
-                  <span className="relative z-10">{item.label}</span>
-                </a>
+                  <span className="relative z-10">
+                    {item.label}
+                  </span>
+                </Link>
               );
             })}
+          </nav>
 
-           
-            <div className="hidden md:flex">
-              <a
-                href="#contact"
-                className="bg-brand-dark text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
-              >
-                CONTACT US
-              </a>
-            </div>
-          </div>
+          {/* CONTACT US BUTTON (exact color) */}
+          <Link
+            to="/contact"
+            className="
+              hidden md:inline-flex
+              items-center justify-center
+              rounded-full
+              bg-[#007d58]          /* ⬅️ exact color */
+              px-8 py-2.5           /* ⬅️ bigger */
+              text-[14px]
+              font-semibold
+              tracking-wide
+              text-white
+              hover:bg-[#006a4b]
+              transition
+            "
+          >
+            CONTACT US
+          </Link>
 
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 

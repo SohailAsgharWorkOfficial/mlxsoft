@@ -7,11 +7,11 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "../../../components/ui/Carousel";
-
-
+import c1 from "../../../assets/images/recent-1.png";
+import c2 from "../../../assets/images/recent-1.png";
+import c3 from "../../../assets/images/recent-1.png";
+import c4 from "../../../assets/images/recent-1.png";
 type Project = {
   id: number;
   title: string;
@@ -20,105 +20,92 @@ type Project = {
 };
 
 const projects: Project[] = [
-  {
-    id: 1,
-    title: "Ecommerce Mobile App",
-    category: "UI/UX Design",
-    image: "/images/recent-1.png",
-  },
-  {
-    id: 2,
-    title: "Ecommerce Web App",
-    category: "UI/UX Design",
-    image: "/images/recent-2.png",
-  },
-  {
-    id: 3,
-    title: "Ecommerce Mobile App",
-    category: "UI/UX Design",
-    image: "/images/recent-1.png",
-  },
+  { id: 1, title: "Ecommerce Mobile App", category: "UI/UX Design", image: c1 },
+  { id: 2, title: "Ecommerce Web App", category: "UI/UX Design", image: c2 },
+  { id: 3, title: "Ecommerce Mobile App", category: "UI/UX Design", image: c3 },
+  { id: 4, title: "Ecommerce Web App", category: "UI/UX Design", image: c4 },
 ];
 
 export default function RecentWorkCarousel() {
   const autoplay = React.useRef(
     Autoplay({
-      delay: 2500,
-      stopOnInteraction: true,
-      jump: false,
+      delay: 2600,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true, // hover pe ruk jaye (screenshot style-friendly)
     })
   );
 
   return (
-    <section className="relative w-full bg-[#F3FFFA] py-24 md:py-32 overflow-hidden">
+    <section className="relative pl-42 overflow-hidden bg-[#F3FFFA] py-24 ">
+      {/* top-left waves */}
+      <img
+        src="/images/waves-green.png"
+        alt=""
+        className="pointer-events-none absolute left-0 top-0 w-[520px] opacity-35"
+      />
 
-      {/* Decorative wave lines top-left */}
-      <div className="absolute left-0 top-0 opacity-30 pointer-events-none hidden md:block">
-        <img
-          src="/images/waves-green.png"
-          alt="decor"
-          className="w-[420px]"
-        />
+      <div className="mx-auto max-w-[1400px] px-6">
+        {/* header row */}
+        <div className="flex items-start justify-between gap-6">
+          <div>
+            <span className="inline-flex rounded-full bg-[#FFF5B8] px-5 py-1 text-[11px] font-medium tracking-widest text-[#3A3A3A]">
+              MARVELLEX
+            </span>
+
+            <h2 className="mt-3 text-[34px] font-semibold leading-tight text-[#111] md:text-[40px]">
+              Look Our Recent Work
+            </h2>
+          </div>
+
+          {/* KEEP: screenshot has this pill (remove if you truly want none) */}
+          <button className="mt-8 mr-37 hidden rounded-full bg-[#0B7A4B] px-6 py-2 text-[11px] font-medium text-white shadow-sm transition hover:bg-[#09653E] md:inline-flex">
+            View All Project
+          </button>
+        </div>
+
+        {/* carousel */}
+        <div className="mt-12">
+          <Carousel
+            opts={{
+              loop: true,
+              align: "start",
+            }}
+            plugins={[autoplay.current]}
+            className="w-full"
+          >
+            {/* spacing to show partial next card like screenshot */}
+            <CarouselContent className="-ml-7 md:-ml-8">
+              {projects.map((p) => (
+                <CarouselItem
+                  key={p.id}
+                  className="pl-7 md:pl-8 basis-[92%] sm:basis-[70%] lg:basis-[36%]"
+                >
+                  {/* card */}
+                  <div className="rounded-[26px]  p-5">
+                    <div className="overflow-hidden rounded-[18px] bg-white">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="h-[250px]  object-contain md:h-[270px]"
+                        draggable={false}
+                      />
+                    </div>
+
+                    <div className="pt-5">
+                      <div className="text-[14px] font-semibold text-[#0B7A4B]">
+                        {p.title}
+                      </div>
+                      <div className="mt-1 text-[11px] text-[#2E2E2E]">
+                        {p.category}
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
       </div>
-
-      {/* Header */}
-      <div className="flex flex-col items-center gap-3 text-center mb-14">
-        <span className="rounded-full bg-[#FFF5B8] px-6 py-1 text-[12px] font-medium tracking-wide text-[#3A3A3A]">
-          MARVELLEX
-        </span>
-
-        <h2 className="text-[34px] md:text-[42px] font-semibold text-[#111]">
-          Look Our Recent Work
-        </h2>
-
-        <button className="absolute right-20 mt-2 rounded-full bg-[#009C6E] px-8 py-2 text-white text-sm font-medium shadow-md hover:bg-[#00AF7C] transition hidden md:block">
-          View All Project
-        </button>
-      </div>
-
-      {/* Carousel */}
-      <Carousel
-        opts={{
-          loop: true,
-          align: "start",
-        }}
-        plugins={[autoplay.current]}
-        onMouseEnter={autoplay.current.stop}
-        onMouseLeave={autoplay.current.reset}
-        className="w-full max-w-[1600px] mx-auto"
-      >
-        <CarouselContent className="-ml-6 md:-ml-10">
-          {projects.map((project) => (
-            <CarouselItem
-              key={project.id}
-              className="pl-6 md:pl-10 basis-[85%] md:basis-1/2 lg:basis-1/3"
-            >
-              <div className="rounded-[35px] bg-white shadow-[0_4px_35px_rgba(0,0,0,0.12)] p-4 md:p-5">
-                <div className="overflow-hidden rounded-[30px]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-[350px] object-cover md:h-[390px]"
-                  />
-                </div>
-
-                <div className="mt-6">
-                  <h3 className="text-[22px] font-semibold text-[#007853]">
-                    {project.title}
-                  </h3>
-                  <p className="mt-1 text-[14px] text-[#777]">
-                    {project.category}
-                  </p>
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-
-        {/* Navigation Arrows */}
-        <CarouselPrevious className="left-4 md:left-10 bg-white border border-[#009C6E] text-[#009C6E] hover:bg-[#009C6E]/10" />
-        <CarouselNext className="right-4 md:right-10 bg-white border border-[#009C6E] text-[#009C6E] hover:bg-[#009C6E]/10" />
-      </Carousel>
     </section>
   );
 }
